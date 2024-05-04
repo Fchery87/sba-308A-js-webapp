@@ -1,0 +1,99 @@
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+    font-family: poppins;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 200px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.news {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.news h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.news img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.news p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.news .source {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.news a {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.news a:hover {
+    text-decoration: underline;
+}
+
+.favorite-btn {
+    font-size: 20px;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.favorite-btn.favorited {
+    border-color: red;
+    color: red;
+}
+
+.share-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.read-more {
+    float: right;
+    margin-top: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
