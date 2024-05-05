@@ -22,7 +22,7 @@ header {
 
 main {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
 }
@@ -81,8 +81,8 @@ main {
 }
 
 .favorite-btn.favorited {
-  border-color: #007bff;
-  color: #007bff;
+  border-color: #f00202;
+  color: #f00202;
 }
 
 .share-btn {
@@ -138,7 +138,7 @@ main {
 
 footer {
   background-color: #212121;
-  color: #8e8d8a;
+  color: #08d9d6;
   text-align: center;
   padding: 20px;
 }
