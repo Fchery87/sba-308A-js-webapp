@@ -99,24 +99,27 @@ function displaySlideshow(data) {
     slide.appendChild(image);
     slideshowContainer.appendChild(slide);
   });
+  let slideIndex = 0;
+  setInterval(() => {
+    slideIndex++;
+    if (slideIndex >= data.length) {
+      slideIndex = 0; // Reset if exceeds slides
+    }
+    console.log('Switching slideshow item:', data[slideIndex]);
+    showSlide(slideIndex);
+  }, 5000); // Change slide every 5 seconds
 }
 
-let slideIndex = 0;
-
-function plusSlides(n) {
-  showSlides((slideIndex += n));
-}
-
-function showSlides(n) {
+function showSlide(index) {
+  console.log('Showing slide:', index);
   const slides = document.querySelectorAll('.slide');
-  if (n >= slides.length) {
-    slideIndex = 0;
-  }
-  if (n < 0) {
-    slideIndex = slides.length - 1;
-  }
-  slides.forEach(slide => (slide.style.display = 'none'));
-  slides[slideIndex].style.display = 'block';
+  slides.forEach((slide, i) => {
+    if (i === index) {
+      slide.style.display = 'block';
+    } else {
+      slide.style.display = 'none';
+    }
+  });
 }
 
 function toggleFavorite(news, button) {

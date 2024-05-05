@@ -117,7 +117,7 @@ main {
   border-radius: 50%;
   transition: background-color 0.3s ease;
   position: absolute;
-  top: 50%;
+  top: 70%;
   transform: translateY(-50%);
 }
 
@@ -130,7 +130,7 @@ main {
 }
 
 .arrow:hover {
-  background-color: #007bff;
+  background-color: #5aa69d;
 }
 
 
