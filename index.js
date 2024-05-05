@@ -1,28 +1,28 @@
 import { fetchMarketNews } from './api.js';
 
 document.addEventListener('DOMContentLoaded', async function () {
-  console.log('Document loaded');
+  console.log('DOM content loaded');
   const newsData = await fetchMarketNews();
   console.log('News data fetched:', newsData);
-  const filteredData = filterMarketWatchPosts(newsData); // Filter out MarketWatch posts
-  console.log('Filtered data:', filteredData);
-  displayMarketNews(filteredData);
+  const filteredData = filterMarketWatchPosts(newsData); // Remove MarketWatch posts
+  console.log('Filtered news:', filteredData);
+  displayNewsPosts(filteredData);
+  displaySlideshow(filteredData.slice(0, 3)); // Display slideshow with 3 newest posts
 });
 
 function filterMarketWatchPosts(data) {
-  const filteredData = data.filter(news => news.source !== 'MarketWatch');
-  console.log('Filtered MarketWatch posts:', filteredData);
-  return filteredData;
+  console.log('Filtering out MarketWatch posts');
+  return data.filter(news => news.source !== 'MarketWatch');
 }
 
-function displayMarketNews(data) {
+function displayNewsPosts(data) {
+  console.log('Displaying news');
   const newsContainer = document.getElementById('newsContainer');
-  console.log('Displaying news:', data);
   if (data && data.length > 0) {
-    data.forEach((news) => {
+    data.forEach(news => {
+      console.log('Displaying news item:', news);
       const newsDiv = document.createElement('div');
       newsDiv.classList.add('news');
-      console.log('Creating news div for:', news.headline);
 
       const headline = document.createElement('h2');
       headline.textContent = news.headline;
@@ -39,7 +39,7 @@ function displayMarketNews(data) {
 
       const relatedList = document.createElement('ul');
       if (Array.isArray(news.related)) {
-        news.related.forEach((related) => {
+        news.related.forEach(related => {
           const relatedItem = document.createElement('li');
           relatedItem.textContent = related.headline;
           relatedList.appendChild(relatedItem);
@@ -49,7 +49,7 @@ function displayMarketNews(data) {
       const link = document.createElement('a');
       link.href = news.url;
       link.textContent = 'Read more';
-      link.classList.add('read-more'); // Add a class for styling
+      link.classList.add('read-more'); // For styling
 
       // Create favorite button
       const favoriteBtn = document.createElement('button');
@@ -73,7 +73,7 @@ function displayMarketNews(data) {
       newsDiv.appendChild(summary);
       newsDiv.appendChild(source);
       newsDiv.appendChild(relatedList);
-      // Add favorite and share buttons before the "Read more" link
+      // Add favorite and share buttons
       newsDiv.appendChild(favoriteBtn);
       newsDiv.appendChild(shareBtn);
       newsDiv.appendChild(link);
@@ -85,16 +85,53 @@ function displayMarketNews(data) {
   }
 }
 
+function displaySlideshow(data) {
+  console.log('Displaying slideshow');
+  const slideshowContainer = document.querySelector('.slideshow-container');
+  data.forEach((news, index) => {
+    console.log('Displaying slideshow item:', news);
+    const slide = document.createElement('div');
+    slide.classList.add('slide');
+    slide.style.display = index === 0 ? 'block' : 'none'; // Display first, hide others
+    const image = document.createElement('img');
+    image.src = news.image;
+    image.alt = news.headline;
+    slide.appendChild(image);
+    slideshowContainer.appendChild(slide);
+  });
+  let slideIndex = 0;
+  setInterval(() => {
+    slideIndex++;
+    if (slideIndex >= data.length) {
+      slideIndex = 0; // Reset if exceeds slides
+    }
+    console.log('Switching slideshow item:', data[slideIndex]);
+    showSlide(slideIndex);
+  }, 5000); // Change slide every 5 seconds
+}
+
+function showSlide(index) {
+  console.log('Showing slide:', index);
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach((slide, i) => {
+    if (i === index) {
+      slide.style.display = 'block';
+    } else {
+      slide.style.display = 'none';
+    }
+  });
+}
+
 function toggleFavorite(news, button) {
+  console.log('Toggling favorite:', news);
   // Toggle favorite state
   news.isFavorite = !news.isFavorite;
-  console.log(`Toggled favorite for news: ${news.headline}`, news);
   // Update button style based on favorite state
   button.classList.toggle('favorited');
 }
 
 function shareArticle(news) {
-  // Implement article sharing functionality (e.g., open share dialog)
-  console.log(`Sharing article: ${news.headline}`);
+  console.log('Sharing article:', news);
+  // Implement article sharing functionality
   alert(`Sharing ${news.headline}`);
 }
