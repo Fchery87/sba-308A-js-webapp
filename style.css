@@ -17,7 +17,7 @@ header {
 }
 
 .logo {
-  width: 200px;
+  width: 300px;
 }
 
 main {
@@ -29,7 +29,7 @@ main {
 
 .news {
   background-color: #fdfdfd;
-  border: 1px solid #8e8d8a;
+  border: 1px solid #a1a1a1;
   border-radius: 3px;
   padding: 20px;
 }
@@ -37,7 +37,7 @@ main {
 .news h2 {
   font-size: 20px;
   margin-bottom: 10px;
-  color: #8e8d8a;
+  color: #575757;
 }
 
 .news img {
@@ -50,7 +50,7 @@ main {
 .news p {
   font-size: 16px;
   margin-bottom: 10px;
-  color: #8e8d8a;
+  color: #575757;
 }
 
 .news .source {
@@ -61,7 +61,7 @@ main {
 
 .news a {
   font-size: 14px;
-  color: #007bff;
+  color: #5aa69d;
   text-decoration: none;
 }
 
@@ -81,8 +81,8 @@ main {
 }
 
 .favorite-btn.favorited {
-  border-color: #f00202;
-  color: #f00202;
+  border-color: #5aa69d;
+  color: #5aa69d;
 }
 
 .share-btn {
@@ -138,7 +138,7 @@ main {
 
 footer {
   background-color: #212121;
-  color: #08d9d6;
+  color: #7bb8b1;
   text-align: center;
   padding: 20px;
 }
