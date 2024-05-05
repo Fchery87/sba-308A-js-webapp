@@ -1,4 +1,3 @@
-/* Resetting default margin, padding, and font-family */
 body,
 h1,
 h2,
@@ -10,20 +9,17 @@ ul {
   font-family: poppins;
 }
 
-/* Styling for the header */
 header {
-  background-color: #212121; /* Beige */
-  color: #8e8d8a; /* Dark gray */
+  background-color: #212121;
+  color: #8e8d8a;
   padding: 20px;
   text-align: center;
 }
 
-/* Logo styling */
 .logo {
   width: 200px;
 }
 
-/* Main content grid */
 main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -31,22 +27,19 @@ main {
   padding: 20px;
 }
 
-/* Styling for news items */
 .news {
-  background-color: #fdfdfd; /* Light beige */
-  border: 1px solid #8e8d8a; /* Dark gray */
+  background-color: #fdfdfd;
+  border: 1px solid #8e8d8a;
   border-radius: 3px;
   padding: 20px;
 }
 
-/* Heading style for news items */
 .news h2 {
   font-size: 20px;
   margin-bottom: 10px;
-  color: #8e8d8a; /* Dark gray */
+  color: #8e8d8a;
 }
 
-/* Image style for news items */
 .news img {
   max-width: 100%;
   height: auto;
@@ -54,51 +47,44 @@ main {
   border-radius: 5px;
 }
 
-/* Paragraph style for news items */
 .news p {
   font-size: 16px;
   margin-bottom: 10px;
-  color: #8e8d8a; /* Dark gray */
+  color: #8e8d8a;
 }
 
-/* Source style for news items */
 .news .source {
   font-size: 14px;
-  color: #8e8d8a; /* Dark gray */
+  color: #8e8d8a;
   margin-bottom: 5px;
 }
 
-/* Link style for news items */
 .news a {
   font-size: 14px;
-  color: #007bff; /* Blue */
+  color: #007bff;
   text-decoration: none;
 }
 
-/* Hover style for links in news items */
 .news a:hover {
   text-decoration: underline;
 }
 
-/* Favorite button style */
 .favorite-btn {
   font-size: 20px;
   background-color: transparent;
-  border: 2px solid #8e8d8a; /* Dark gray */
+  border: 2px solid #8e8d8a;
   border-radius: 50%;
   cursor: pointer;
   padding: 5px;
   margin-right: 10px;
-  color: #8e8d8a; /* Dark gray */
+  color: #8e8d8a;
 }
 
-/* Styling for favorited news items */
 .favorite-btn.favorited {
-  border-color: #007bff; /* Blue */
-  color: #007bff; /* Blue */
+  border-color: #007bff;
+  color: #007bff;
 }
 
-/* Share button style */
 .share-btn {
   background-color: transparent;
   border: none;
@@ -108,59 +94,51 @@ main {
   vertical-align: middle;
 }
 
-/* Styling for the slideshow container */
 .slideshow-container {
-    max-width: 100%;
-    overflow: hidden; /* Added overflow property */
-    position: relative;
-  }
-  
-  /* Styling for slideshow images */
-  .slideshow-container img {
-    width: 100%; /* Ensure images fill the container */
-    height: auto; /* Maintain aspect ratio */
-  }
-  
-  /* Styling for slideshow navigation arrows */
-  .arrow {
-    font-size: 30px;
-    color: #8e8d8a; /* Dark gray */
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  /* Position arrows */
-  .arrow.left {
-    left: 10px;
-  }
-  
-  .arrow.right {
-    right: 10px;
-  }
-  
-
-/* Hover effect for slideshow navigation arrows */
-.arrow:hover {
-  background-color: #007bff; /* Blue */
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Styling for 'Read more' links */
+.slideshow-container img {
+  width: 100%;
+  height: auto;
+}
+
+.arrow {
+  font-size: 30px;
+  color: #8e8d8a;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+.arrow:hover {
+  background-color: #007bff;
+}
+
 .read-more {
   float: right;
   margin-top: 10px;
 }
 
-/* Footer styling */
 footer {
-  background-color: #212121; /* Beige */
-  color: #8e8d8a; /* Dark gray */
+  background-color: #212121;
+  color: #8e8d8a;
   text-align: center;
   padding: 20px;
 }
@@ -173,21 +151,21 @@ footer {
   .logo {
     width: 150px;
   }
-  
+
   /* Adjust the grid layout to a single column */
   main {
     grid-template-columns: 1fr;
   }
-  
+
   /* Adjust font sizes for better readability on smaller screens */
   .news h2 {
     font-size: 18px;
   }
-  
+
   .news p {
     font-size: 14px;
   }
-  
+
   .news .source,
   .news a {
     font-size: 12px;
@@ -200,21 +178,21 @@ footer {
   .logo {
     width: 120px;
   }
-  
+
   /* Adjust padding on news items for better spacing */
   .news {
     padding: 10px;
   }
-  
+
   /* Adjust font sizes for better readability on smaller screens */
   .news h2 {
     font-size: 16px;
   }
-  
+
   .news p {
     font-size: 12px;
   }
-  
+
   .news .source,
   .news a {
     font-size: 10px;
