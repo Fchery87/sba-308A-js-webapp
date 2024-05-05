@@ -105,6 +105,8 @@ main {
   height: auto;
 }
 
+/* Your existing CSS styles here */
+
 .arrow {
   font-size: 30px;
   color: #8e8d8a;
@@ -130,6 +132,7 @@ main {
 .arrow:hover {
   background-color: #007bff;
 }
+
 
 .read-more {
   float: right;
