@@ -105,8 +105,6 @@ main {
   height: auto;
 }
 
-/* Your existing CSS styles here */
-
 .arrow {
   font-size: 30px;
   color: #8e8d8a;
@@ -117,7 +115,7 @@ main {
   border-radius: 50%;
   transition: background-color 0.3s ease;
   position: absolute;
-  top: 70%;
+  top: 50%;
   transform: translateY(-50%);
 }
 
@@ -133,6 +131,42 @@ main {
   background-color: #5aa69d;
 }
 
+.stock-container {
+  background-color: #fdfdfd;
+  border: 0px solid #a1a1a1;
+  border-radius: 3px;
+  padding: 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #575757;
+  /* text-align: center; */
+}
+
+.stock-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input {
+  font-family: poppins;
+}
+
+#searchBtn {
+  font-family: poppins;
+}
+
+#stockContainer h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #575757;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
 
 .read-more {
   float: right;

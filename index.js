@@ -1,4 +1,5 @@
 import { fetchMarketNews } from './api.js';
+import { fetchStockData } from './stockApi.js'; // Assuming you have a separate module for stock API
 
 document.addEventListener('DOMContentLoaded', async function () {
   console.log('DOM content loaded');
@@ -8,18 +9,33 @@ document.addEventListener('DOMContentLoaded', async function () {
   console.log('Filtered news:', filteredData);
   displayNewsPosts(filteredData);
   displaySlideshow(filteredData.slice(0, 3)); // Display slideshow with 3 newest posts
+
+  // Add event listener for search button
+  document.getElementById('searchBtn').addEventListener('click', async () => {
+    const ticker = document
+      .getElementById('tickerInput')
+      .value.trim()
+      .toUpperCase();
+    if (ticker) {
+      const stockData = await fetchStockData(ticker);
+      console.log('Stock data:', stockData);
+      displayStockData(stockData);
+    } else {
+      alert('Please enter a stock ticker.');
+    }
+  });
 });
 
 function filterMarketWatchPosts(data) {
   console.log('Filtering out MarketWatch posts');
-  return data.filter(news => news.source !== 'MarketWatch');
+  return data.filter((news) => news.source !== 'MarketWatch');
 }
 
 function displayNewsPosts(data) {
   console.log('Displaying news');
   const newsContainer = document.getElementById('newsContainer');
   if (data && data.length > 0) {
-    data.forEach(news => {
+    data.forEach((news) => {
       console.log('Displaying news item:', news);
       const newsDiv = document.createElement('div');
       newsDiv.classList.add('news');
@@ -39,7 +55,7 @@ function displayNewsPosts(data) {
 
       const relatedList = document.createElement('ul');
       if (Array.isArray(news.related)) {
-        news.related.forEach(related => {
+        news.related.forEach((related) => {
           const relatedItem = document.createElement('li');
           relatedItem.textContent = related.headline;
           relatedList.appendChild(relatedItem);
@@ -85,6 +101,63 @@ function displayNewsPosts(data) {
   }
 }
 
+function displayStockData(data) {
+  const stockDataContainer = document.createElement('div');
+  stockDataContainer.id = 'stockDataContainer';
+
+  if (data) {
+    const price = document.createElement('p');
+    price.textContent = `Current Price: ${data.c}`;
+
+    const change = document.createElement('p');
+    change.textContent = `Change: ${data.d}`;
+
+    const percentChange = document.createElement('p');
+    percentChange.textContent = `Percent Change: ${data.dp}`;
+
+    const highPrice = document.createElement('p');
+    highPrice.textContent = `High Price of the Day: ${data.h}`;
+
+    const lowPrice = document.createElement('p');
+    lowPrice.textContent = `Low Price of the Day: ${data.l}`;
+
+    const openPrice = document.createElement('p');
+    openPrice.textContent = `Open Price of the Day: ${data.o}`;
+
+    const previousClose = document.createElement('p');
+    previousClose.textContent = `Previous Close Price: ${data.pc}`;
+
+    stockDataContainer.appendChild(price);
+    stockDataContainer.appendChild(change);
+    stockDataContainer.appendChild(percentChange);
+    stockDataContainer.appendChild(highPrice);
+    stockDataContainer.appendChild(lowPrice);
+    stockDataContainer.appendChild(openPrice);
+    stockDataContainer.appendChild(previousClose);
+
+    const stockContainer = document.getElementById('stockContainer');
+    stockContainer.appendChild(stockDataContainer);
+  } else {
+    const stockContainer = document.getElementById('stockContainer');
+    stockContainer.innerHTML =
+      '<p>No data available for this stock ticker.</p>';
+  }
+}
+
+function toggleFavorite(news, button) {
+  console.log('Toggling favorite:', news);
+  // Toggle favorite state
+  news.isFavorite = !news.isFavorite;
+  // Update button style based on favorite state
+  button.classList.toggle('favorited');
+}
+
+function shareArticle(news) {
+  console.log('Sharing article:', news);
+  // Implement article sharing functionality
+  alert(`Sharing ${news.headline}`);
+}
+
 function displaySlideshow(data) {
   console.log('Displaying slideshow');
   const slideshowContainer = document.querySelector('.slideshow-container');
@@ -120,18 +193,4 @@ function showSlide(index) {
       slide.style.display = 'none';
     }
   });
-}
-
-function toggleFavorite(news, button) {
-  console.log('Toggling favorite:', news);
-  // Toggle favorite state
-  news.isFavorite = !news.isFavorite;
-  // Update button style based on favorite state
-  button.classList.toggle('favorited');
-}
-
-function shareArticle(news) {
-  console.log('Sharing article:', news);
-  // Implement article sharing functionality
-  alert(`Sharing ${news.headline}`);
 }
