@@ -139,8 +139,9 @@ main {
   margin-top: 20px;
   font-size: 16px;
   color: #575757;
-  /* text-align: center; */
+  text-align: center; /* Center align the content */
 }
+
 
 .stock-input {
   display: flex;

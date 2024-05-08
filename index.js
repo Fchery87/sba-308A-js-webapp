@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       .value.trim()
       .toUpperCase();
     if (ticker) {
+      clearStockData(); // Clear previous stock data
       const stockData = await fetchStockData(ticker);
       console.log('Stock data:', stockData);
       displayStockData(stockData);
@@ -141,6 +142,14 @@ function displayStockData(data) {
     const stockContainer = document.getElementById('stockContainer');
     stockContainer.innerHTML =
       '<p>No data available for this stock ticker.</p>';
+  }
+}
+
+function clearStockData() {
+  const stockContainer = document.getElementById('stockContainer');
+  const stockDataContainer = document.getElementById('stockDataContainer');
+  if (stockDataContainer) {
+    stockContainer.removeChild(stockDataContainer);
   }
 }
 
