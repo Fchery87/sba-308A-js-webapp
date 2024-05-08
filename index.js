@@ -1,23 +1,22 @@
 import { fetchMarketNews } from './api.js';
-import { fetchStockData } from './stockApi.js'; // Assuming you have a separate module for stock API
+import { fetchStockData } from './stockApi.js';
 
 document.addEventListener('DOMContentLoaded', async function () {
   console.log('DOM content loaded');
   const newsData = await fetchMarketNews();
   console.log('News data fetched:', newsData);
-  const filteredData = filterMarketWatchPosts(newsData); // Remove MarketWatch posts
+  const filteredData = filterMarketWatchPosts(newsData);
   console.log('Filtered news:', filteredData);
   displayNewsPosts(filteredData);
-  displaySlideshow(filteredData.slice(0, 3)); // Display slideshow with 3 newest posts
+  displaySlideshow(filteredData.slice(0, 3));
 
-  // Add event listener for search button
   document.getElementById('searchBtn').addEventListener('click', async () => {
     const ticker = document
       .getElementById('tickerInput')
       .value.trim()
       .toUpperCase();
     if (ticker) {
-      clearStockData(); // Clear previous stock data
+      clearStockData();
       const stockData = await fetchStockData(ticker);
       console.log('Stock data:', stockData);
       displayStockData(stockData);
@@ -66,17 +65,15 @@ function displayNewsPosts(data) {
       const link = document.createElement('a');
       link.href = news.url;
       link.textContent = 'Read more';
-      link.classList.add('read-more'); // For styling
+      link.classList.add('read-more');
 
-      // Create favorite button
       const favoriteBtn = document.createElement('button');
-      favoriteBtn.innerHTML = '&#10084;'; // Heart symbol
+      favoriteBtn.innerHTML = '&#10084;';
       favoriteBtn.classList.add('favorite-btn');
       favoriteBtn.addEventListener('click', function () {
         toggleFavorite(news, favoriteBtn);
       });
 
-      // Create share button
       const shareBtn = document.createElement('button');
       shareBtn.innerHTML = '<img src="./images/share.svg" alt="Share">';
       shareBtn.classList.add('share-btn');
@@ -84,13 +81,11 @@ function displayNewsPosts(data) {
         shareArticle(news);
       });
 
-      // Append elements to newsDiv
       newsDiv.appendChild(headline);
       newsDiv.appendChild(image);
       newsDiv.appendChild(summary);
       newsDiv.appendChild(source);
       newsDiv.appendChild(relatedList);
-      // Add favorite and share buttons
       newsDiv.appendChild(favoriteBtn);
       newsDiv.appendChild(shareBtn);
       newsDiv.appendChild(link);
@@ -155,51 +150,78 @@ function clearStockData() {
 
 function toggleFavorite(news, button) {
   console.log('Toggling favorite:', news);
-  // Toggle favorite state
   news.isFavorite = !news.isFavorite;
-  // Update button style based on favorite state
   button.classList.toggle('favorited');
 }
 
 function shareArticle(news) {
   console.log('Sharing article:', news);
-  // Implement article sharing functionality
   alert(`Sharing ${news.headline}`);
 }
 
 function displaySlideshow(data) {
   console.log('Displaying slideshow');
   const slideshowContainer = document.querySelector('.slideshow-container');
+  const slides = [];
+  let slideIndex = 0;
+  let intervalId;
+
+  function showSlide(index) {
+    console.log('Showing slide:', index);
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.style.display = 'block';
+      } else {
+        slide.style.display = 'none';
+      }
+    });
+  }
+
+  function changeSlide(direction) {
+    slideIndex += direction;
+    if (slideIndex >= slides.length) {
+      slideIndex = 0;
+    } else if (slideIndex < 0) {
+      slideIndex = slides.length - 1;
+    }
+    showSlide(slideIndex);
+  }
+
   data.forEach((news, index) => {
     console.log('Displaying slideshow item:', news);
     const slide = document.createElement('div');
     slide.classList.add('slide');
-    slide.style.display = index === 0 ? 'block' : 'none'; // Display first, hide others
+    slide.style.display = 'none';
     const image = document.createElement('img');
     image.src = news.image;
     image.alt = news.headline;
     slide.appendChild(image);
     slideshowContainer.appendChild(slide);
+    slides.push(slide);
   });
-  let slideIndex = 0;
-  setInterval(() => {
-    slideIndex++;
-    if (slideIndex >= data.length) {
-      slideIndex = 0; // Reset if exceeds slides
-    }
-    console.log('Switching slideshow item:', data[slideIndex]);
-    showSlide(slideIndex);
-  }, 5000); // Change slide every 5 seconds
-}
 
-function showSlide(index) {
-  console.log('Showing slide:', index);
-  const slides = document.querySelectorAll('.slide');
-  slides.forEach((slide, i) => {
-    if (i === index) {
-      slide.style.display = 'block';
-    } else {
-      slide.style.display = 'none';
-    }
+  function startInterval() {
+    intervalId = setInterval(() => {
+      changeSlide(1);
+    }, 5000);
+  }
+
+  function stopInterval() {
+    clearInterval(intervalId);
+  }
+
+  document.querySelector('.arrow.left').addEventListener('click', () => {
+    stopInterval();
+    changeSlide(-1);
+    startInterval();
   });
+
+  document.querySelector('.arrow.right').addEventListener('click', () => {
+    stopInterval();
+    changeSlide(1);
+    startInterval();
+  });
+
+  showSlide(slideIndex);
+  startInterval();
 }

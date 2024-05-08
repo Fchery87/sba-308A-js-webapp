@@ -142,7 +142,6 @@ main {
   text-align: center; /* Center align the content */
 }
 
-
 .stock-input {
   display: flex;
   justify-content: center;
@@ -208,6 +207,10 @@ footer {
   .news a {
     font-size: 12px;
   }
+  .arrow {
+    font-size: 20px;
+    padding: 8px;
+  }
 }
 
 /* For screens smaller than 480px (e.g., mobile phones) */
@@ -234,5 +237,9 @@ footer {
   .news .source,
   .news a {
     font-size: 10px;
+  }
+  .arrow {
+    font-size: 16px;
+    padding: 6px;
   }
 }
